@@ -26,7 +26,7 @@ Nous avons utilisé l'API **Google Gemini 1.5 Flash** pour extraire des signaux 
 En raison des limitations de quota de l'API gratuite (15 RPM), l'IA a été sollicitée pour un échantillon représentatif de 5 annonces afin de valider le pipeline.
 
 **Capture d'écran du terminal (Logs de transformation) :**
-![Preuve Inférence IA]((docs/analyse_datalake.png))
+![Preuve Inférence IA]((./docs/analyse_datalake.png))
 
 > *Note : Pour le reste du dataset (2620+ lignes), des valeurs aléatoires (-1, 0, 1) ont été générées conformément aux consignes, afin de permettre l'intégration complète dans le Data Warehouse PostgreSQL sans saturation de quota.*
 
