@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport Final Mairie - ImmoVision360</title>
+    <style>
+        @page { size: A4; margin: 2cm; }
+        body {
+            font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .cover-page { text-align: center; padding-top: 100px; height: 90vh; }
+        .cover-page h1 { font-size: 3.5em; color: #1a3a5a; margin-bottom: 10px; }
+        .cover-page h2 { font-size: 1.8em; color: #4a5568; font-weight: normal; }
+        .info-box { margin-top: 150px; font-size: 1.1em; border-top: 1px solid #cbd5e0; padding-top: 40px; }
+        
+        h1 { color: #1a3a5a; border-bottom: 2px solid #1a3a5a; padding-bottom: 8px; margin-top: 50px; page-break-before: always; }
+        h2 { color: #2c5282; margin-top: 35px; border-left: 5px solid #2c5282; padding-left: 15px; }
+        h3 { color: #2d3748; margin-top: 25px; font-weight: bold; }
+        
+        .summary-box { background: #edf2f7; border-radius: 12px; padding: 25px; margin: 30px 0; border-left: 6px solid #1a3a5a; }
+        .methodo-step { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        
+        .figure-container { text-align: center; margin: 40px 0; page-break-inside: avoid; }
+        img { max-width: 90%; height: auto; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .caption { display: block; margin-top: 12px; font-style: italic; color: #4a5568; font-size: 0.95em; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; background: white; }
+        th { background: #1a3a5a; color: white; padding: 15px; text-align: left; }
+        td { border-bottom: 1px solid #e2e8f0; padding: 15px; }
+        
+        .limit-item { margin-bottom: 15px; padding-left: 20px; border-left: 3px solid #fc8181; }
+        .page-break { page-break-after: always; }
+    </style>
+</head>
+<body>
+
+    <div class="cover-page">
+        <h1>ImmoVision 360</h1>
+        <h2>Étude de l'impact des locations courte durée<br>sur le quartier de l'Élysée</h2>
+        <div class="info-box">
+            <p><strong>Livrable final adressé à la Mairie de Paris</strong></p>
+            <p>Réalisé par : <strong>Mégane Legnigha</strong></p>
+            <p>Expertise : Intelligence Artificielle & Big Data</p>
+            <p>Avril 2026</p>
+        </div>
+    </div>
+
+    <h1>RÉSUMÉ EXÉCUTIF</h1>
+    <div class="summary-box">
+        <p>Ce rapport présente les conclusions d'une étude d'exploration de données (EDA) menée sur le parc locatif Airbnb du quartier Élysée. L'objectif est d'identifier si le quartier bascule d'une économie de partage vers une exploitation industrielle.</p>
+        <p><strong>Conclusions majeures :</strong></p>
+        <ul>
+            <li><strong>Rupture du lien social :</strong> Confirmée. 59% des logements sont gérés de manière automatisée (hôtélisation des textes).</li>
+            <li><strong>Standardisation visuelle :</strong> Marquée (57%) mais pas encore hégémonique.</li>
+            <li><strong>Concentration financière :</strong> Inégalité forte (Gini 0.85). 5% des hôtes captent 42% de l'offre, signe d'une présence forte d'investisseurs professionnels.</li>
+        </ul>
+    </div>
+
+    <h1>1. DONNÉES ET CHAÎNE DE TRAITEMENT</h1>
+    <p>Pour répondre aux questions de la Mairie, nous avons construit un pipeline de données automatisé garantissant l'intégrité des résultats.</p>
+    
+    <h2>1.1 Origine des données</h2>
+    <p>Les données proviennent d'un "snapshot" public (Inside Airbnb) comprenant les métadonnées des annonces, les descriptions textuelles rédigées par les hôtes et les photographies des logements.</p>
+    
+    <h2>1.2 Les étapes de traitement (Pipeline)</h2>
+    <div class="methodo-step">
+        <h3>Étape 1 : Collecte & Filtrage (Bronze → Silver)</h3>
+        <p>Extraction des données spécifiques au quartier Élysée. Nettoyage des doublons et gestion des valeurs aberrantes. Les données manquantes ont été codées " -1 " pour être isolées statistiquement.</p>
+    </div>
+    <div class="methodo-step">
+        <h3>Étape 2 : Enrichissement par l'IA (Silver → Gold)</h3>
+        <p>Nous avons utilisé deux modèles d'Intelligence Artificielle :</p>
+        <ul>
+            <li><strong>Analyse d'image :</strong> Classification du style décoratif (Industriel vs Personnel).</li>
+            <li><strong>Analyse de texte (NLP) :</strong> Détection de mots-clés hôteliers ("conciergerie", "boîtier", "professionnel").</li>
+        </ul>
+    </div>
+    <div class="methodo-step">
+        <h3>Étape 3 : Chargement & Stockage</h3>
+        <p>Les données traitées sont stockées dans un Data Warehouse (PostgreSQL) permettant des croisements analytiques complexes entre le volume d'annonces par hôte et la qualité des services.</p>
+    </div>
+
+    <h1>2. ANALYSE DE LA STANDARDISATION</h1>
+    <p>La mairie craint que les logements ne soient plus des lieux de vie, mais des "produits financiers" formatés.</p>
+    <div class="figure-container">
+        <img src="docs/figures/q1_standardisation_repartition.png" alt="Répartition Standardisation">
+        <span class="caption">Figure 1 : Répartition des styles de logements. 57% présentent un style "Industrialisé" (décoration neutre sans trace de vie).</span>
+    </div>
+    <p>Bien que la tendance soit à la neutralisation des intérieurs pour plaire au plus grand nombre, 43% des hôtes conservent un habitat personnalisé. L'hypothèse d'une standardisation totale est donc nuancée.</p>
+
+    <h1>3. ANALYSE DE LA DÉSHUMANISATION</h1>
+    <p>Le lien social est-il rompu ? Nous avons cherché les traces d'une présence humaine réelle dans les échanges.</p>
+    <div class="figure-container">
+        <img src="docs/figures/q3_deshumanisation_textes.png" alt="Analyse des textes">
+        <span class="caption">Figure 2 : Typologie des descriptions. Une majorité (59%) adopte un ton strictement hôtelier.</span>
+    </div>
+    <p>L'utilisation massive de termes liés à la gestion à distance (accès autonome, gestion par agence) valide l'hypothèse d'une déshumanisation du service de location dans ce secteur géographique.</p>
+
+    <h1>4. ANALYSE DE LA CONCENTRATION</h1>
+    <p>L'offre est-elle aux mains de quelques-uns ?</p>
+    <div class="figure-container">
+        <img src="docs/figures/q4_concentration_lorenz.png" alt="Courbe de Lorenz">
+        <span class="caption">Figure 3 : Courbe de Lorenz. Plus la courbe est éloignée de la diagonale, plus l'inégalité est forte.</span>
+    </div>
+    <p>Avec un coefficient de Gini de <strong>0.851</strong>, la concentration est "Extrême". À titre de comparaison, un Gini de 1 représenterait un monopole total. Ici, 5% des hôtes contrôlent presque la moitié du marché de l'Élysée.</p>
+
+    <h1>5. LIMITES DE L'ÉTUDE</h1>
+    <p>Il est crucial pour le décideur public de prendre en compte les biais suivants :</p>
+    <div class="limit-item">
+        <strong>Source Unique :</strong> Les données proviennent uniquement d'Airbnb. Les autres plateformes (Booking, Abritel) ne sont pas incluses, ce qui peut sous-estimer la concentration réelle.</div>
+    <div class="limit-item">
+        <strong>Valeurs Manquantes :</strong> Environ 15% des données présentent un score de "-1" dû à des images ou textes illisibles par l'IA. Ces données ont été exclues des graphiques pour ne pas fausser les proportions.</div>
+    <div class="limit-item">
+        <strong>Corrélation n'est pas raison :</strong> Un style "industriel" (IKEA) peut être un choix budgétaire d'un particulier et non la preuve d'un investissement spéculatif.</div>
+
+    <h1>CONCLUSION ET PISTES D'ACTION</h1>
+    <p>L'étude démontre que le quartier de l'Élysée a largement dépassé le stade de "l'économie de partage" entre particuliers.</p>
+    <p><strong>Établi :</strong> La gestion est devenue professionnelle, automatisée et concentrée entre les mains de multi-propriétaires.</p>
+    <p><strong>Incertain :</strong> L'impact réel sur le prix des loyers longue durée (données non disponibles dans ce dataset).</p>
+    
+    <p><strong>Pistes éventuelles :</strong></p>
+    <ul>
+        <li>Limiter le nombre d'annonces par hôte à 3 pour réduire la concentration financière.</li>
+        <li>Imposer une signalétique spécifique pour les logements dont la gestion est 100% automatisée.</li>
+    </ul>
+
+    <div style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; font-size: 0.8em; color: #999;">
+        Lien vers le dépôt GitHub : https://github.com/megxp/ImmoVision360.git
+    </div>
+
+</body>
+</html>
